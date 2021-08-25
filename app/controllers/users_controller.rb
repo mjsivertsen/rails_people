@@ -22,5 +22,28 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    user = User.find(params[:id])
+    render component: "User", props: {user: user}
+  end
+
+  def edit
+    user = User.find(params[:id])
+    render component: "EditUser", props: {user: user}
+  end
+
+  def update
+    user = User.find(params[:id])
+    if user.update(user_params)
+      redirect_to users_path
+    else
+    end
+  end
+
+  def destroy
+    user = User.find(params[:id]).delete
+    redirect_to users_path
+  end
+  
 
 end
